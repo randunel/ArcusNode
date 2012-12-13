@@ -11,8 +11,9 @@ var server = new ArcusNode({
 
 server.on('connect', function(nc, params) {
   console.log("Connection handled");
-  nc.on('myCommand', function(arg) {
-    console.log("myCommand in netconnection");
+  nc.onCommand('myCommand', function(message, cb) {
+    console.log("myCommand in netconnection", message.commandData);
+    cb.call(nc, message, "mowahahahha");
   });
   nc.wait();
   nc.accept();
@@ -23,11 +24,5 @@ server.on('connect', function(nc, params) {
   console.log("myCommand!");
   return "arcusArg";
 });*/
-
-// New method
-server.command('myCommand', function(nc, message, context, cb) {
-  console.log("myCommand on service", message.commandData);
-  cb.call(context, nc, message, "asdqq123");
-});
 
 server.run();
