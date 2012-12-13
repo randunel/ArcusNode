@@ -1,3 +1,16 @@
+# ArcusNode Media Server
+
+This is a customized version of ArcusNode. Changes will be listed here.
+
+* RTMFP commands no longer require a return value. This was a synchronous (blocking) function. The commands are now async and require a callback.
+* RTMFP commands are now handled FMS-style. The commands used to be handled at the service level (regardless of client connection and application). The commands are now handled per-netconnection, so a NetConnection with different credentials may be bound to a different function for the same command (or no function at all).
+
+TODO:
+* Handle applications FMS style
+* Make the commands easier to use (handle possible context problems)
+
+The old README below:
+
 # ArcusNode
 #### A RTMFP Rendevouz Server For Peer Assisted Networking With Adobe Flash on NodeJS
 ArcusNode aims to assist P2P networking with ease of extendability due to Javascript glue with NodeJS.
